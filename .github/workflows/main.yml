@@ -160,12 +160,12 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/
-            ./${{ vars.DEPLOY_SCRIPT }} \
+            ./${{ env.DEPLOY_SCRIPT }} \
               -v "latest" \
-              -a "${{ vars.CONTAINER_TAG }}"
-              -u "${{ secrets.DOCKER_USERNAME }}" \
+              -a "${{ env.CONTAINER_TAG }}"
+              -u "${{ env.DOCKER_USERNAME }}" \
               -p "${{ secrets.DOCKER_TOKEN }}" \
-              -l "/var/www/${{ vars.DEPLOY_PATH }}" \
+              -l "/var/www/${{ env.DEPLOY_PATH }}" \
               -r "docker.io"
         env:
           CONTAINER_TAG: ${{ vars.CONTAINER_TAG }}
