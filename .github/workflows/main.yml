@@ -164,7 +164,7 @@ jobs:
               -v "latest" \
               -a "${{ vars.CONTAINER_TAG }}"
               -u "${{ secrets.DOCKER_USERNAME }}" \
-              -p "${{ secrets.DOCKER_PASSWORD }}" \
+              -p "${{ secrets.DOCKER_TOKEN }}" \
               -l "/var/www/${{ vars.DEPLOY_PATH }}" \
               -r "docker.io"
         env:
