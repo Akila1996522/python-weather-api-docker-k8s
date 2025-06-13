@@ -129,7 +129,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+        env:
+          REGISTRY: ${{vars.REGISTRY}}
+
       - name: Create docker IMAGE
         run: |
           docker build -t ${{ env.REGISTRY_NAME }}:latest .
