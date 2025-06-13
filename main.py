@@ -1,10 +1,8 @@
 """Main Weather CLI Application"""
 
 import json
-from config import get_api_key, get_units
 from weather import get_weather_by_city, get_weather_by_zip
 from storage import save_last_location, load_last_location, add_favorite, delete_favorites
-
 
 def weather_check(data):
     """Print weather or an error message if data is None"""
