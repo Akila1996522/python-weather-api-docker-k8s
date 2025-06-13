@@ -14,7 +14,7 @@ def print_weather(weather):
     print(f"City: {weather['city']}")
     print(f"Temperature: {weather['temp']}°F")
     print(f"Feels like: {weather['feels_like']}°F")
-    print(f'Humidity: {weather['humidity']}%')
+    print(f"Humidity: {weather['humidity']}%")
     print(f"Condition: {weather['description'].title()}")
     
 def city_name():
