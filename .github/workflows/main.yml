@@ -165,7 +165,7 @@ jobs:
               -a "${{ env.CONTAINER_TAG }}"
               -u "${{ env.DOCKER_USERNAME }}" \
               -p "${{ secrets.DOCKER_TOKEN }}" \
-              -l "/var/www/${{ env.DEPLOY_PATH }}" \
+              -l "${{ env.DEPLOY_PATH }}" \
               -r "docker.io"
         env:
           CONTAINER_TAG: ${{ vars.CONTAINER_TAG }}
