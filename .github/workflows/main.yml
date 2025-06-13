@@ -52,7 +52,7 @@ jobs:
           sudo apt-get update && sudo apt-get install -y libfreetype6-dev
           pip install -r requirements.txt
           pip install pytest pytest-cov
-      - run: pytest tests/ --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+      - run: pytest --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
 
     
 
