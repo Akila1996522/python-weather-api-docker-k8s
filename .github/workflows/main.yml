@@ -116,10 +116,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/checkout@v3
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: list files current folder
         run: ls -alt
+        
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
