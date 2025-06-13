@@ -23,4 +23,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["fastapi","run","src","--port","8000","--host","0.0.0.0"]
+CMD ["./","fastapi","run","src","--port","8000","--host","0.0.0.0"]
