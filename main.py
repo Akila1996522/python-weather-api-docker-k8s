@@ -11,19 +11,23 @@ app = FastAPI(title="Weather API")
 FAVORITES_FILE = "favorites.json"
 
 class LocationRequest(BaseModel):
+    """Model representing a weather location request by city or zip code."""
     type: Literal["city", "zip"]
     value: str
 
 class FavoriteLocation(BaseModel):
+    """Model representing a favorite location."""
     type: str
     value: str
 
 @app.get("/")
 def home():
+    """Root endpoint to check if the API is running."""
     return {"message": "🌦️ Welcome to the Weather API"}
 
 @app.get("/weather/city/{city}")
 def get_city_weather(city: str):
+    """Fetch weather data by city name."""
     data = get_weather_by_city(city.title())
     if data:
         save_last_location("city", city.title())
