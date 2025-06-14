@@ -23,4 +23,5 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["./","fastapi","run","src","--port","8000","--host","0.0.0.0"]
+# Launch FastAPI app with root path
+CMD [".venv/bin/uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
