@@ -1,9 +1,11 @@
 """FastAPI Weather API"""
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from typing import List, Literal
 import json
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
 from weather import get_weather_by_city, get_weather_by_zip
 from storage import save_last_location, load_last_location, add_favorite, delete_favorites
 
@@ -36,6 +38,7 @@ def get_city_weather(city: str):
 
 @app.get("/weather/zip/{zip_code}")
 def get_zip_weather(zip_code: str):
+    """Fetch weather data by zip code."""
     data = get_weather_by_zip(zip_code)
     if data:
         save_last_location("zip", zip_code)
@@ -44,6 +47,7 @@ def get_zip_weather(zip_code: str):
 
 @app.get("/last-location")
 def get_last_saved_location():
+    """Retrieve and return weather data for the last saved location."""
     location_type, location_value = load_last_location()
     if not location_type:
         raise HTTPException(status_code=404, detail="No last location saved")
@@ -61,6 +65,7 @@ def get_last_saved_location():
 
 @app.get("/favorites", response_model=List[FavoriteLocation])
 def list_favorites():
+    """Return a list of saved favorite locations."""
     try:
         with open(FAVORITES_FILE, "r", encoding="utf-8") as file:
             data = json.load(file)
@@ -70,10 +75,12 @@ def list_favorites():
 
 @app.post("/favorites")
 def save_favorite(location: LocationRequest):
+    """Save a new favorite location."""
     add_favorite(location.type, location.value)
     return {"message": "New favorite saved."}
 
 @app.delete("/favorites")
 def remove_all_favorites():
+    """Delete all saved favorite locations."""
     delete_favorites()
     return {"message": "All favorites deleted."}
